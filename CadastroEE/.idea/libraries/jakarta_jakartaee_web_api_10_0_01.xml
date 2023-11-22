@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jakarta.jakartaee-web-api-10.0.01">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CadastroEE-war/build/lib/jakarta.jakartaee-web-api-10.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

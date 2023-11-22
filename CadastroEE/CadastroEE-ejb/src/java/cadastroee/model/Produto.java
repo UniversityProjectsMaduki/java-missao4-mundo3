@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-import cadastroee.model.Produto;
-
+package cadastroee.model;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -20,8 +15,6 @@ import java.util.Collection;
  *
  * @author Madu
  */
-
-
 @Entity
 @Table(name = "Produto")
 @NamedQueries({

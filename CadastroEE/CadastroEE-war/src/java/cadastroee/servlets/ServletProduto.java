@@ -1,7 +1,7 @@
 package cadastroee.servlets;
 
 import cadastroee.controller.ProdutoFacadeLocal;
-
+import cadastroee.model.Produto;
 import jakarta.ejb.EJB;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ServletProduto extends HttpServlet {
 
     @EJB
-    private ProdutoFacadeLocal facade;
+    private ProdutoFacadeLocal produtoFacade;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,14 +25,21 @@ public class ServletProduto extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Lista de Produtos</h1>");
-            
-            List<Produto> produtos = facade.findAll();
-            out.println("<ul>");
-            for (Produto produto : produtos) {
-                out.println("<li>" + produto.getNome() + " - " + produto.getPrecoVenda() + "</li>");
+
+            // Busca a lista de produtos usando o facade
+            List<Produto> listaProdutos = produtoFacade.findAll();
+
+            // Verifica se a lista não está vazia antes de tentar usá-la
+            if (listaProdutos != null) {
+                out.println("<ul>");
+                for (Produto produto : listaProdutos) {
+                    out.println("<li>" + produto.getNome() + " - " + produto.getPrecoVenda() + "</li>");
+                }
+                out.println("</ul>");
+            } else {
+                out.println("<p>Não foram encontrados produtos.</p>");
             }
-            out.println("</ul>");
-            
+
             out.println("</body>");
             out.println("</html>");
         }
