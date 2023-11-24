@@ -98,10 +98,14 @@ public class Produto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idProduto != null ? idProduto.hashCode() : 0);
+        int hash = 7;
+        hash = 31 * hash + (idProduto != null ? idProduto.hashCode() : 0);
+        hash = 31 * hash + (nome != null ? nome.hashCode() : 0);
+        hash = 31 * hash + (quantidade != null ? quantidade.hashCode() : 0);
+        hash = 31 * hash + (precoVenda != null ? Float.floatToIntBits(precoVenda) : 0);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object object) {

@@ -104,8 +104,13 @@ public class MovimentoCompra implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idMovimentoCompra != null ? idMovimentoCompra.hashCode() : 0);
+        int hash = 7;
+        hash = 31 * hash + (idMovimentoCompra != null ? idMovimentoCompra.hashCode() : 0);
+        hash = 31 * hash + (quantidade != null ? quantidade.hashCode() : 0);
+        hash = 31 * hash + (precoUnitario != null ? precoUnitario.hashCode() : 0);
+        hash = 31 * hash + (idProduto != null ? idProduto.hashCode() : 0);
+        hash = 31 * hash + (idFornecedor != null ? idFornecedor.hashCode() : 0);
+        hash = 31 * hash + (idOperador != null ? idOperador.hashCode() : 0);
         return hash;
     }
 

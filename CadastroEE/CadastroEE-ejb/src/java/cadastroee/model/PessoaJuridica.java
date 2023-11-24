@@ -70,10 +70,12 @@ public class PessoaJuridica implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idPessoaJuridica != null ? idPessoaJuridica.hashCode() : 0);
+        int hash = 7;
+        hash = 31 * hash + (idPessoaJuridica != null ? idPessoaJuridica.hashCode() : 0);
+        hash = 31 * hash + (cnpj != null ? cnpj.hashCode() : 0);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object object) {

@@ -1,13 +1,13 @@
 package cadastroee.controller;
 
 import cadastroee.model.Produto;
+import java.util.List;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import java.util.List;
 
 /**
- * Classe de fachada para lidar com operações na entidade Produto.
+ * Classe de fachada para realizar operações CRUD na entidade Produto.
  */
 @Stateless
 public class ProdutoFacade implements ProdutoFacadeLocal {
@@ -15,26 +15,35 @@ public class ProdutoFacade implements ProdutoFacadeLocal {
     @PersistenceContext(unitName = "CadastroEE-ejbPU")
     private EntityManager em;
 
-    /**
-     * Método para obter o gerenciador de entidade.
-     *
-     * @return o gerenciador de entidade
-     */
+
+    @Override
+    public void create(Produto produto) {
+        em.persist(produto);
+    }
+
+    @Override
+    public Produto find(Object id) {
+        return em.find(Produto.class, id);
+    }
+
+    @Override
+    public void edit(Produto produto) {
+        em.merge(produto);
+    }
+
+    @Override
+    public void remove(Produto produto) {
+        em.remove(em.merge(produto));
+    }
+
+    @Override
+    public List<Produto> findAll() {
+        return em.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
+    }
+
+    // Implemente outros métodos conforme necessário.
+
     protected EntityManager getEntityManager() {
         return em;
     }
-
-    /**
-     * Método para encontrar todos os produtos.
-     *
-     * @return uma lista de produtos
-     */
-    @Override
-    public List<Produto> findAll() {
-        jakarta.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(Produto.class));
-        return getEntityManager().createQuery(cq).getResultList();
-    }
-
-    // Outros métodos de negócios podem ser implementados aqui.
 }

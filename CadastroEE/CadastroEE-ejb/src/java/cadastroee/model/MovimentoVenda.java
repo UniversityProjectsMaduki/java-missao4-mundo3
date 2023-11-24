@@ -104,10 +104,16 @@ public class MovimentoVenda implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (idMovimentoVenda != null ? idMovimentoVenda.hashCode() : 0);
+        int hash = 7;
+        hash = 31 * hash + (idMovimentoVenda != null ? idMovimentoVenda.hashCode() : 0);
+        hash = 31 * hash + (quantidade != null ? quantidade.hashCode() : 0);
+        hash = 31 * hash + (precoUnitario != null ? precoUnitario.hashCode() : 0);
+        hash = 31 * hash + (idComprador != null ? idComprador.hashCode() : 0);
+        hash = 31 * hash + (idProduto != null ? idProduto.hashCode() : 0);
+        hash = 31 * hash + (idOperador != null ? idOperador.hashCode() : 0);
         return hash;
     }
+
 
     @Override
     public boolean equals(Object object) {

@@ -19,10 +19,6 @@ Os principais objetivos deste projeto prático incluem:
 
 O projeto está dividido em diversos procedimentos, cada um abordando uma parte do desenvolvimento. Siga as instruções detalhadas no documento da missão prática para configurar a conexão com o banco de dados, criar as entidades JPA, configurar o GlassFish Server, implementar os Servlets e aprimorar o design da interface com Bootstrap.
 
-## Considerações Finais
-
-Este projeto foi desenvolvido com fins acadêmicos para a disciplina de Desenvolvimento Web. Ele demonstra a aplicação de tecnologias como Servlets, JPA e JEE na criação de um sistema web básico de cadastro.
-
 ## Notas
 
 Este projeto destina-se exclusivamente a fins acadêmicos e não deve ser considerado um sistema de produção completo.
