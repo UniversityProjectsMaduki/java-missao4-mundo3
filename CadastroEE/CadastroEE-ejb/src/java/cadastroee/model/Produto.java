@@ -9,12 +9,9 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 
-/**
- *
- * @author Madu
- */
 @Entity
 @Table(name = "Produto")
 @NamedQueries({
@@ -22,22 +19,29 @@ import java.util.Collection;
     @NamedQuery(name = "Produto.findByIdProduto", query = "SELECT p FROM Produto p WHERE p.idProduto = :idProduto"),
     @NamedQuery(name = "Produto.findByNome", query = "SELECT p FROM Produto p WHERE p.nome = :nome"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
-    @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda")})
+    @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda")
+})
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
     @Basic(optional = false)
     @Column(name = "idProduto")
     private Integer idProduto;
+    
     @Column(name = "nome")
     private String nome;
+    
     @Column(name = "quantidade")
     private Integer quantidade;
+    
     @Column(name = "precoVenda")
-    private Float precoVenda;
+    private BigDecimal precoVenda; // Alterado de Float para BigDecimal
+    
     @OneToMany(mappedBy = "idProduto")
     private Collection<MovimentoVenda> movimentoVendaCollection;
+    
     @OneToMany(mappedBy = "idProduto")
     private Collection<MovimentoCompra> movimentoCompraCollection;
 
@@ -72,11 +76,11 @@ public class Produto implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Float getPrecoVenda() {
+    public BigDecimal getPrecoVenda() {
         return precoVenda;
     }
 
-    public void setPrecoVenda(Float precoVenda) {
+    public void setPrecoVenda(BigDecimal precoVenda) {
         this.precoVenda = precoVenda;
     }
 
@@ -102,14 +106,12 @@ public class Produto implements Serializable {
         hash = 31 * hash + (idProduto != null ? idProduto.hashCode() : 0);
         hash = 31 * hash + (nome != null ? nome.hashCode() : 0);
         hash = 31 * hash + (quantidade != null ? quantidade.hashCode() : 0);
-        hash = 31 * hash + (precoVenda != null ? Float.floatToIntBits(precoVenda) : 0);
+        hash = 31 * hash + (precoVenda != null ? precoVenda.hashCode() : 0);
         return hash;
     }
 
-
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Produto)) {
             return false;
         }

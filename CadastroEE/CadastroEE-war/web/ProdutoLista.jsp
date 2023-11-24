@@ -1,45 +1,34 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Lista de Produtos</title>
-    <!-- Adicione aqui qualquer referência a CSS ou Bootstrap se necessário -->
-</head>
-<body>
-    <h1>Lista de Produtos</h1>
-    <a href="ServletProdutoFC?acao=formIncluir">Incluir Novo Produto</a>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        
-            <c:forEach items="${produtos}" var="produto">
-                <tr>
-                    <td>${produto.id}</td>
-                    <td>${produto.nome}</td>
-                    <td>${produto.quantidade}</td>
-                    <td>${produto.preco}</td>
-                    <td>
-                        <a href="ServletProdutoFC?acao=formAlterar&id=${produto.id}">Alterar</a>
-                        |
-                        <a href="ServletProdutoFC?acao=excluir&id=${produto.id}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
-                    </td>
-                </tr>
-            </c:forEach>
-            <c:if test="${empty produtos}">
-                <tr>
-                    <td colspan="5">Nenhum produto encontrado.</td>
-                </tr>
-            </c:if>
-        
-    </table>
-</body>
-</html>
+    <head>
+        <title>Produto</title>
+    </head>
+        <body>
+
+        <%-- Verifique se há alguma mensagem de erro no request e exiba-a --%>
+        <%
+        String errorMessage = (String) request.getAttribute("errorMessage");
+        if (errorMessage != null && !errorMessage.isEmpty()) {
+            out.println("<p style='color: red;'>" + errorMessage + "</p>");
+        }
+        %>
+
+        <%-- Se o produto existe, estamos editando. Se não, estamos criando um novo. --%>
+        <%
+        Produto produto = (Produto) request.getAttribute("produto");
+        String formAction = produto != null ? "ServletProdutoFC?acao=alterar" : "ServletProdutoFC?acao=incluir";
+        %>
+
+        <form action="<%= formAction %>" method="post">
+            Nome do Produto: <input type="text" name="nome" value="<%= produto != null ? produto.getNome() : "" %>"><br>
+            Quantidade: <input type="number" name="quantidade" value="<%= produto != null ? produto.getQuantidade() : "" %>"><br>
+            Preço de Venda: <input type="text" name="precoVenda" value="<%= produto != null ? produto.getPrecoVenda().toString() : "" %>"><br>
+            <% if (produto != null) { %>
+                <input type="hidden" name="id" value="<%= produto.getIdProduto() %>">
+            <% } %>
+            <input type="submit" value="Salvar">
+        </form>
+
+    </body>
+    </html>
