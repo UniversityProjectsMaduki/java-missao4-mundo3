@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="CadastroEE-ejb">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/CadastroEE-ejb/dist/CadastroEE-ejb.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

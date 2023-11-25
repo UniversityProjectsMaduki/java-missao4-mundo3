@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="web" name="Web">
+    <facet type="jpa" name="JPA">
       <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/dist/gfdeploy/CadastroEE/CadastroEE-war_war/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/dist/gfdeploy/CadastroEE/CadastroEE-war_war" relative="/" />
-        </webroots>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping />
+        <naming-strategy-map />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/.idea/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
@@ -17,5 +15,8 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mssql-jdbc-12.4.2.jre8" level="project" />
+    <orderEntry type="library" name="jakarta.ejb.api" level="project" />
+    <orderEntry type="library" name="glassfish.javax.ejb" level="project" />
   </component>
 </module>

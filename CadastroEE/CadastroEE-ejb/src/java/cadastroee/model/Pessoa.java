@@ -127,18 +127,10 @@ public class Pessoa implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (idPessoa != null ? idPessoa.hashCode() : 0);
-        hash = 31 * hash + (nome != null ? nome.hashCode() : 0);
-        hash = 31 * hash + (logradouro != null ? logradouro.hashCode() : 0);
-        hash = 31 * hash + (cidade != null ? cidade.hashCode() : 0);
-        hash = 31 * hash + (estado != null ? estado.hashCode() : 0);
-        hash = 31 * hash + (telefone != null ? telefone.hashCode() : 0);
-        hash = 31 * hash + (email != null ? email.hashCode() : 0);
-        hash = 31 * hash + (tipoPessoa != null ? tipoPessoa.hashCode() : 0);
+        int hash = 0;
+        hash += (idPessoa != null ? idPessoa.hashCode() : 0);
         return hash;
     }
-
 
     @Override
     public boolean equals(Object object) {

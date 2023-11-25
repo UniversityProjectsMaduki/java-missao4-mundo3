@@ -1,13 +1,6 @@
 package cadastroee.model;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -15,34 +8,34 @@ import java.util.Collection;
 @Entity
 @Table(name = "Produto")
 @NamedQueries({
-    @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
-    @NamedQuery(name = "Produto.findByIdProduto", query = "SELECT p FROM Produto p WHERE p.idProduto = :idProduto"),
-    @NamedQuery(name = "Produto.findByNome", query = "SELECT p FROM Produto p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
-    @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda")
+        @NamedQuery(name = "Produto.findAll", query = "SELECT p FROM Produto p"),
+        @NamedQuery(name = "Produto.findByIdProduto", query = "SELECT p FROM Produto p WHERE p.idProduto = :idProduto"),
+        @NamedQuery(name = "Produto.findByNome", query = "SELECT p FROM Produto p WHERE p.nome = :nome"),
+        @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
+        @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda")
 })
 public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @Basic(optional = false)
     @Column(name = "idProduto")
     private Integer idProduto;
-    
+
     @Column(name = "nome")
     private String nome;
-    
+
     @Column(name = "quantidade")
     private Integer quantidade;
-    
+
     @Column(name = "precoVenda")
-    private BigDecimal precoVenda; // Alterado de Float para BigDecimal
-    
-    @OneToMany(mappedBy = "idProduto")
+    private BigDecimal precoVenda;
+
+    @OneToMany(mappedBy = "produto")
     private Collection<MovimentoVenda> movimentoVendaCollection;
-    
-    @OneToMany(mappedBy = "idProduto")
+
+    @OneToMany(mappedBy = "produto")
     private Collection<MovimentoCompra> movimentoCompraCollection;
 
     public Produto() {
@@ -102,12 +95,7 @@ public class Produto implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (idProduto != null ? idProduto.hashCode() : 0);
-        hash = 31 * hash + (nome != null ? nome.hashCode() : 0);
-        hash = 31 * hash + (quantidade != null ? quantidade.hashCode() : 0);
-        hash = 31 * hash + (precoVenda != null ? precoVenda.hashCode() : 0);
-        return hash;
+        return (idProduto != null ? idProduto.hashCode() : 0);
     }
 
     @Override
@@ -116,15 +104,11 @@ public class Produto implements Serializable {
             return false;
         }
         Produto other = (Produto) object;
-        if ((this.idProduto == null && other.idProduto != null) || (this.idProduto != null && !this.idProduto.equals(other.idProduto))) {
-            return false;
-        }
-        return true;
+        return (this.idProduto != null || other.idProduto == null) && (this.idProduto == null || this.idProduto.equals(other.idProduto));
     }
 
     @Override
     public String toString() {
-        return "cadastroee.model.Produto[ idProduto=" + idProduto + " ]";
+        return "Produto[idProduto=" + idProduto + "]";
     }
-    
 }

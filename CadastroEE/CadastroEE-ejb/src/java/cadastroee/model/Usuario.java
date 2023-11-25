@@ -91,13 +91,10 @@ public class Usuario implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (idOperador != null ? idOperador.hashCode() : 0);
-        hash = 31 * hash + (nome != null ? nome.hashCode() : 0);
-        hash = 31 * hash + (senha != null ? senha.hashCode() : 0);
+        int hash = 0;
+        hash += (idOperador != null ? idOperador.hashCode() : 0);
         return hash;
     }
-
 
     @Override
     public boolean equals(Object object) {

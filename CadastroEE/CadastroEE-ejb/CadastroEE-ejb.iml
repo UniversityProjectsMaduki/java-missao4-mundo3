@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="ejb" name="EJB">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="ejb-jar.xml" url="file://$MODULE_DIR$/META-INF/ejb-jar.xml" />
+        </descriptors>
+        <ejbRoots>
+          <root url="file://$MODULE_DIR$/src/java" />
+        </ejbRoots>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -7,7 +19,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jakarta.jakartaee-web-api-10.0.01" level="project" />
-    <orderEntry type="library" name="jakarta.jakartaee-web-api-10.0.0" level="project" />
+    <orderEntry type="library" exported="" name="jakarta.platform.jakartaee.web.api" level="project" />
+    <orderEntry type="library" exported="" name="mssql-jdbc-12.4.2.jre81" level="project" />
   </component>
 </module>

@@ -2,62 +2,39 @@ package cadastroee.servlets;
 
 import cadastroee.controller.ProdutoFacadeLocal;
 import cadastroee.model.Produto;
-import jakarta.ejb.EJB;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
+
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+@WebServlet(name = "ServletProduto", urlPatterns = {"/ServletProduto"})
 public class ServletProduto extends HttpServlet {
 
     @EJB
-    private ProdutoFacadeLocal produtoFacade;
+    private ProdutoFacadeLocal facade;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Lista de Produtos</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Lista de Produtos</h1>");
+        // Recupere os dados usando o facade
+        List<Produto> produtos = facade.findAll();
 
-            // Busca a lista de produtos usando o facade
-            List<Produto> listaProdutos = produtoFacade.findAll();
-
-            // Verifica se a lista não está vazia antes de tentar usá-la
-            if (listaProdutos != null) {
-                out.println("<ul>");
-                for (Produto produto : listaProdutos) {
-                    out.println("<li>" + produto.getNome() + " - " + produto.getPrecoVenda() + "</li>");
-                }
-                out.println("</ul>");
-            } else {
-                out.println("<p>Não foram encontrados produtos.</p>");
-            }
-
-            out.println("</body>");
-            out.println("</html>");
+        // Construa a resposta em HTML
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>Lista de Produtos</h1>");
+        out.println("<ul>");
+        for (Produto produto : produtos) {
+            out.println("<li>" + produto.getNome() + "</li>");
         }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Servlet para listar produtos";
+        out.println("</ul>");
+        out.println("</body></html>");
     }
 }
+

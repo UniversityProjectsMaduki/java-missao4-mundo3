@@ -3,12 +3,13 @@ package cadastroee.servlets;
 import cadastroee.controller.ProdutoFacadeLocal;
 import cadastroee.model.Produto;
 import jakarta.ejb.EJB;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.RequestDispatcher;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
@@ -118,7 +119,6 @@ public class ServletProdutoFC extends HttpServlet {
                             novoProduto.setNome(novoNome);
                             novoProduto.setQuantidade(novaQuantidade);
                             novoProduto.setPrecoVenda(novoPrecoVenda);
-
 
 
                             produtoFacade.create(novoProduto);
