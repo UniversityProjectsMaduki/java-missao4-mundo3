@@ -1,11 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="CadastroEE-war:Web exploded">
+  <artifact type="exploded-war" build-on-make="true" name="CadastroEE-war:Web exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/CadastroEE_war_Web_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="CadastroEE-war/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="CadastroEE-war" />
+          <element id="module-output" name="CadastroEE-ejb" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mssql-jdbc-12.4.2.jre82" />
+          <element id="library" level="application" name="jars" />
+          <element id="library" level="project" name="mssql-jdbc-12.4.2.jre81" />
         </element>
       </element>
     </root>

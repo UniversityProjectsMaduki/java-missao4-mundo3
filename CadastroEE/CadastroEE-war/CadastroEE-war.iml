@@ -23,5 +23,7 @@
     <orderEntry type="module" module-name="CadastroEE-ejb" exported="" />
     <orderEntry type="library" exported="" name="jars" level="application" />
     <orderEntry type="library" exported="" name="mssql-jdbc-12.4.2.jre82" level="project" />
+    <orderEntry type="library" exported="" name="jakarta.ejb.api" level="project" />
+    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

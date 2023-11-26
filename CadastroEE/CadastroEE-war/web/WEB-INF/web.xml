@@ -2,26 +2,18 @@
 
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://
-xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
- <servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProduto</servlet-name>
+        <url-pattern>/ServletProduto</url-pattern>
+    </servlet-mapping>
 
-   <servlet-name>ServletProduto</servlet-name>
 
-   <servlet-class>cadastroee.servlets.ServletProduto</servlet-class>
-
- </servlet>
-
- <servlet>
-
-   <servlet-name>ServletProdutoFC</servlet-name>
-
-   <servlet-class>cadastroee.servlets.ServletProdutoFC
-
-   </servlet-class>
-
- </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletProdutoFC</servlet-name>
+        <url-pattern>/ServletProdutoFC</url-pattern>
+    </servlet-mapping>
 
  <session-config>
 

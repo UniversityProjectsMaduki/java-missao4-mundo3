@@ -33,10 +33,9 @@ public class ServletProdutoFC extends HttpServlet {
                     destino = "ProdutoLista.jsp";
                     break;
                 case "formIncluir":
-                    destino = "ProdutoForm.jsp"; // Nome da página JSP para inclusão
+                    destino = "ProdutoForm.jsp";
                     break;
                 case "formAlterar":
-                    // Verificação de parâmetro nulo ou vazio e conversão segura para int
                     String idStr = request.getParameter("id");
                     if (idStr != null && !idStr.isEmpty()) {
                         int idAlterar = Integer.parseInt(idStr);
@@ -54,7 +53,6 @@ public class ServletProdutoFC extends HttpServlet {
                     }
                     break;
                 case "excluir":
-                    // Mesma verificação de parâmetro nulo ou vazio e conversão segura para int
                     String idDelStr = request.getParameter("id");
                     if (idDelStr != null && !idDelStr.isEmpty()) {
                         int idExcluir = Integer.parseInt(idDelStr);
@@ -72,8 +70,6 @@ public class ServletProdutoFC extends HttpServlet {
                     response.sendRedirect("ServletProdutoFC?acao=listar");
                     return;
                 case "alterar":
-                    // Atualização do produto existente com verificação de nulidade
-                    // A verificação dos parâmetros e a conversão para os tipos corretos são feitas aqui
                     String nome = request.getParameter("nome");
                     String quantidadeStr = request.getParameter("quantidade");
                     String precoVendaStr = request.getParameter("precoVenda");
@@ -101,8 +97,6 @@ public class ServletProdutoFC extends HttpServlet {
                     response.sendRedirect("ServletProdutoFC?acao=listar");
                     return;
                 case "incluir":
-                    // Inclusão de um novo produto com verificação de nulidade
-                    // A verificação dos parâmetros e a conversão para os tipos corretos são feitas aqui
                     String novoNome = request.getParameter("nome");
                     String novaQuantidadeStr = request.getParameter("quantidade");
                     String novoPrecoVendaStr = request.getParameter("precoVenda");
